@@ -1,1 +1,1 @@
-# My Cypres Automation Studies
+# My Cypress Automation Studies
