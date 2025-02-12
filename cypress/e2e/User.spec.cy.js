@@ -8,22 +8,28 @@ describe('Orange HRM Tests', () => {
     loginButton: "[type='submit']",
     dashboardGrid: ".orangehrm-dashboard-grid",
     sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module",
-    wrongCredentialAlert: "[role='alert']"
+    wrongCredentialAlert: "[role='alert']",
+    myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
+    firstNameField: "[name='firstName']",
+    lastNameField: "[name='lastName']",
+    nicknameField: ".oxd-input--active"
   }
 
-  it('Login - Success', () => {
+  it.only('User Info Update - Success', () => {
     cy.visit('/auth/login')
     cy.get(selectorsList.usernameField).type(userData.userSuccess.username)
     cy.get(selectorsList.passwordField).type(userData.userSuccess.password)
     cy.get(selectorsList.loginButton).click()
     cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
     cy.get(selectorsList.dashboardGrid)
+    cy.get(selectorsList.myInfoButton).click()
+    cy.get(selectorsList.nicknameField).eq(4).clear().type('Nickname')
   })
   it('Login - Failed', () => {
     cy.visit('/auth/login')
-    cy.get("[name='username']").type(userData.userFail.username)
-    cy.get("[name='password']").type(userData.userFail.password)
-    cy.get("[type='submit']").click()
+    cy.get(selectorsList.usernameField).type(userData.userFail.username)
+    cy.get(selectorsList.passwordField).type(userData.userFail.password)
+    cy.get(selectorsList.loginButton).click()
     cy.get(selectorsList.wrongCredentialAlert)
   })
 
