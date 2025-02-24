@@ -17,12 +17,10 @@ class LoginPage {
         cy.get(this.selectorsList().loginButton).click()
         
     }
-    loginFailed(userData) {
-        cy.get(this.selectorsList().usernameField).type(userData)
-        cy.get(this.selectorsList().passwordField).type(userData)
-        cy.get(this.selectorsList().loginButton).click()
+    checkAccessInvalid() {
         cy.get(this.selectorsList().wrongCredentialAlert)
     }
+
 
 }
 export default LoginPage 
