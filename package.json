@@ -10,5 +10,9 @@
   "description": "",
   "devDependencies": {
     "cypress": "^13.14.2"
+  },
+  "dependencies": {
+    "chance": "^1.1.12",
+    "moment": "^2.30.1"
   }
 }

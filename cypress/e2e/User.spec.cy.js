@@ -4,6 +4,12 @@ import DashboardPage from '../pages/dashboardPage.js'
 import MenuPage from '../pages/menuPage.js'
 import MyInfoPage from '../pages/myInfoPage.js'
 
+var Chance = require('chance');
+var moment = require('moment');
+//moment().format();
+
+
+const chance = new Chance()
 const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 const menuPage = new MenuPage()
@@ -18,8 +24,8 @@ describe('Orange HRM Tests', () => {
 
     menuPage.acessMyInfo()
 
-    myInfoPage.fillPersonalDetails('Ryan', 'Silva')
-    myInfoPage.fillEmployeeDetails('EmployID', 'OtherID', 'Drivers Number', '2025-03-10')
+    myInfoPage.fillPersonalDetails(chance.first(), chance.last())
+    myInfoPage.fillEmployeeDetails(chance.prefix(), chance.string(), chance.integer(), moment().format("YYYY-MM-DD"))
     myInfoPage.fillStatus()
     myInfoPage.saveForms()
   })
